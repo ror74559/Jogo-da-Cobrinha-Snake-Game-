@@ -2,8 +2,11 @@ let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
-let point = 0;
+let ponto = 0;
 let pontuacao = document.getElementById("ponto");
+let nivel = document.getElementById("nivel");
+let velocidade = 200;
+let valNivel = 1
 
 snake[0] = {
 	x: 8 * box,
@@ -14,6 +17,7 @@ let direction = "right";
 let food = {
 	x: Math.floor(Math.random() * 15 + 1)*box ,
 	y: Math.floor(Math.random() * 15 + 1)*box
+
 }
 
 function criarBG(){
@@ -83,8 +87,17 @@ function iniciarJogo(){
 
 		food.x = Math.floor(Math.random() * 15 + 1)*box;
 		food.y = Math.floor(Math.random() * 15 + 1)*box;
-		point += 1;
-		pontuacao.innerHTML = "Pontuação: "+ point;
+		ponto += 1;
+		pontuacao.innerHTML = "Pontuação: "+ ponto;
+		if(ponto % 5 == 0) {
+			valNivel += 1;
+
+			nivel.innerHTML = "Nível: "+ valNivel + velocidade;
+			velocidade -= 50;
+			
+
+		}
+
 
 
 
@@ -100,10 +113,14 @@ function iniciarJogo(){
 
 	snake.unshift(newHead);
 
+	
+
 
 
 
 }
 
-let jogo = setInterval(iniciarJogo, 100);
+
+let jogo = setInterval(iniciarJogo, velocidade);
+
 
