@@ -5,7 +5,7 @@ let snake = [];
 let ponto = 0;
 let pontuacao = document.getElementById("ponto");
 let nivel = document.getElementById("nivel");
-let velocidade = 200;
+let velocidade = 300;
 let valNivel = 1
 
 snake[0] = {
@@ -92,8 +92,11 @@ function iniciarJogo(){
 		if(ponto % 5 == 0) {
 			valNivel += 1;
 
-			nivel.innerHTML = "Nível: "+ valNivel + velocidade;
+			nivel.innerHTML = "Nível: "+ valNivel;
+			clearInterval(jogo);
 			velocidade -= 50;
+			jogo = setInterval(iniciarJogo,velocidade);
+			
 			
 
 		}
@@ -121,6 +124,6 @@ function iniciarJogo(){
 }
 
 
-let jogo = setInterval(iniciarJogo, velocidade);
+let jogo = setInterval(iniciarJogo,velocidade);
 
 
